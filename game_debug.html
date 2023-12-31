@@ -3,12 +3,12 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Ella2023</title>
+        <title>Yie Ar Sint Fu</title>
         <meta name="viewport"
             content="width=device-width,initial-scale=1.0,minimum-scale=1,maximum-scale=1,user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Ella2023">
+        <meta name="apple-mobile-web-app-title" content="Yie Ar Sint Fu">
         <link rel="manifest" href="manifest.webmanifest">
         <link rel="apple-touch-icon" href="bmsx_icon.png">
         <link rel="icon" type="image/png" href="bmsx_icon.png">
@@ -27,7 +27,6 @@ const bootrom = {
         bootrom.rom = rom;
     },
     usr(x) {
-        var _a, _b;
         const remove = (id) => {
             let element = document.querySelector(id);
             if (element)
@@ -54,16 +53,15 @@ const bootrom = {
             console.error(err);
             document.getElementById('gamescreen').hidden = true;
             document.getElementById('gamescreen').style.display = 'none';
-            throw new Error(`Error in usr(0): "${(_b = (_a = err === null || err === void 0 ? void 0 : err.message) !== null && _a !== void 0 ? _a : err) !== null && _b !== void 0 ? _b : 'unknown error :-('}"`);
+            throw new Error(`Error in usr(0): "${err?.message ?? err ?? 'unknown error :-('}"`);
         }
     },
     async bload(url) {
         window.onunhandledrejection = (event) => {
-            var _a, _b, _c;
             event.preventDefault();
             event.stopPropagation();
             event.stopImmediatePropagation();
-            const reason = (_c = (_b = (_a = event.reason) === null || _a === void 0 ? void 0 : _a.message) !== null && _b !== void 0 ? _b : event.reason) !== null && _c !== void 0 ? _c : 'unkown error';
+            const reason = event.reason?.message ?? event.reason ?? 'unkown error';
             const errormsg = `Unhandled rejection during "bload"-command: "${reason}".`;
             throw new Error(errormsg);
         };
@@ -302,7 +300,11 @@ function decodeuint8arr(to_decode) {
 }
 async function fetchText(url) {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        });
         if (!response.ok) {
             throw new Error(`Failed @fetchText for URL "${url}"`);
         }
@@ -316,7 +318,11 @@ async function fetchText(url) {
 }
 async function fetchBuffer(url) {
     try {
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            headers: {
+                'Cache-Control': 'no-cache'
+            }
+        });
         if (!response.ok) {
             throw new Error(`Failed @fetchBuffer for URL "${url}"`);
         }
@@ -384,7 +390,7 @@ function createAudioContext() {
             <div id="controls" hidden>
                 <nav class="buttons-container">
                     <!-- Shoulder Buttons and Triggers -->
-                    <div class="shoulder-container"
+                    <div class="shoulder-container" hidden
                         style="position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 1vmax;">
                         <!-- Left Side: LS and LT -->
                         <svg class="extrabuttons" style="width: 20vmax; height: 10vmax;">
@@ -517,8 +523,8 @@ function createAudioContext() {
     <script>
         bootrom.debug = true;
 
-        bootrom.romname = 'ella2023';
-        bootrom.bload('./ella2023.rom').then(function (h406A) {
+        bootrom.romname = 'yiear';
+        bootrom.bload('./yiear.rom').then(function (h406A) {
             bootrom.defusr = h406A;
             bootrom.usr(0);
         }).catch(function (err) {
