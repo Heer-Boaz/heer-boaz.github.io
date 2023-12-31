@@ -3,12 +3,12 @@
 
     <head>
         <meta charset="utf-8" />
-        <title>Ella2023</title>
+        <title>Yie Ar Sint Fu</title>
         <meta name="viewport"
             content="width=device-width,initial-scale=1.0,minimum-scale=1,maximum-scale=1,user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <meta name="apple-mobile-web-app-title" content="Ella2023">
+        <meta name="apple-mobile-web-app-title" content="Yie Ar Sint Fu">
         <link rel="manifest" href="manifest.webmanifest">
         <link rel="apple-touch-icon" href="bmsx_icon.png">
         <link rel="icon" type="image/png" href="bmsx_icon.png">
@@ -31,7 +31,7 @@
             <div id="controls" hidden>
                 <nav class="buttons-container">
                     <!-- Shoulder Buttons and Triggers -->
-                    <div class="shoulder-container"
+                    <div class="shoulder-container" hidden
                         style="position: absolute; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 1vmax;">
                         <!-- Left Side: LS and LT -->
                         <svg class="extrabuttons" style="width: 20vmax; height: 10vmax;">
@@ -164,8 +164,8 @@
     <script>
         bootrom.debug = false;
 
-        bootrom.romname = 'ella2023';
-        bootrom.bload('./ella2023.rom').then(function (h406A) {
+        bootrom.romname = 'yiear';
+        bootrom.bload('./yiear.rom').then(function (h406A) {
             bootrom.defusr = h406A;
             bootrom.usr(0);
         }).catch(function (err) {
