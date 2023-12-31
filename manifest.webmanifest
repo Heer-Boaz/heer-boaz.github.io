@@ -1,7 +1,7 @@
 {
-	"short_name": "BMSX",
-	"name": "Marlies2020",
-	"display": "standalone",
+	"name": "Yie Ar Sint Fu",
+	"short_name": "Yie Ar Sint",
+	"display": "fullscreen",
 	"orientation": "landscape",
 	"background_color": "#000000"
 }
