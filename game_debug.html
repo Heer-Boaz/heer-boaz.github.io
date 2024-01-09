@@ -450,7 +450,7 @@ function createAudioContext() {
                         <filter id="buttonFilter" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur" />
                             <feOffset in="blur" dx="4" dy="4" result="offsetBlur" />
-                            <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" specularExponent="20"
+                            <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" specularExponent="30"
                                 lighting-color="#bbbbbb" result="specOut">
                                 <fePointLight x="-5000" y="-10000" z="20000" />
                             </feSpecularLighting>
@@ -462,7 +462,7 @@ function createAudioContext() {
                     <filter id="pressedButtonFilter" x="-50%" y="-50%" width="200%" height="200%">
                         <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur" />
                         <feOffset in="blur" dx="2" dy="2" result="offsetBlur" />
-                        <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" specularExponent="20"
+                        <feSpecularLighting in="blur" surfaceScale="5" specularConstant=".75" specularExponent="30"
                             lighting-color="#bbbbbb" result="specOut">
                             <fePointLight x="-5000" y="-10000" z="10000" />
                         </feSpecularLighting>
