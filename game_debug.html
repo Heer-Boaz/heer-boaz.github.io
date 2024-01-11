@@ -72,7 +72,7 @@ const bootrom = {
             throw new Error(errormsg);
         };
         createAudioContext();
-        if (!window.matchMedia('(display-mode: standalone)').matches) {
+        if (!window.matchMedia('(display-mode: standalone), (display-mode: fullscreen)').matches) {
             const extra_messageElement = document.querySelector('#extra-message');
             extra_messageElement.innerText = 'Please add this page to your home screen to get the full experience of this game!';
             extra_messageElement.hidden = false;
