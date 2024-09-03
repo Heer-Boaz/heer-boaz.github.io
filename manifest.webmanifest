@@ -1,7 +1,10 @@
 {
 	"name": "Yie Ar Sint Fu",
 	"short_name": "Yie Ar Sint",
-	"display": "fullscreen",
+	"display": "standalone",
 	"orientation": "landscape",
-	"background_color": "#000000"
+	"background_color": "#2020ff",
+	"start_url": "/",
+	"scope": "/",
+	"theme_color": "#2020ff"
 }
