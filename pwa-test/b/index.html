@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="nl"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Test b</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="../../bmsx_icon.png">
+<style>body{margin:0;min-height:100vh;background:#2060c0;color:#fff;font:20px/1.5 system-ui;display:grid;place-content:center;text-align:center}</style>
+</head><body>
+<h1>APP b</h1>
+<p id="info"></p>
+<script>
+document.getElementById('info').innerHTML =
+	'pathname: ' + location.pathname + '<br>search: ' + (location.search || '(leeg)') +
+	'<br>standalone: ' + (navigator.standalone === true) +
+	'<br>localStorage-teller: ' + (function () { try { var n = +(localStorage.getItem('n') || 0) + 1; localStorage.setItem('n', n); return n; } catch (e) { return 'n/a'; } })();
+</script>
+</body></html>

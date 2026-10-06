@@ -1,0 +1,11 @@
+{
+	"id": "./",
+	"name": "PWA test b",
+	"short_name": "Test b",
+	"display": "standalone",
+	"start_url": "./",
+	"scope": "./",
+	"background_color": "#2060c0",
+	"theme_color": "#2060c0",
+	"icons": [{ "src": "../../bmsx_icon.png", "sizes": "192x192", "type": "image/png" }]
+}
