@@ -6,16 +6,16 @@
   const episodes = new Map(D.episodes.map(x => [x.id, x]));
   const STORE = 'hockey-stap-voor-stap-v1';
   const FOLDER = D.delivery?.mode === 'folder';
-  const PAGE_DEFAULTS = {'START.html':'#start','coachmoment.html':'#coach-0','met-de-bal.html':'#momenten-bal','elkaar-helpen.html':'#momenten-helpen','samen-verdedigen.html':'#momenten-verdedigen','naslag.html':'#naslag'};
+  const PAGE_DEFAULTS = {'analyse.html':'#start','coachmoment.html':'#coach-0','met-de-bal.html':'#momenten-bal','elkaar-helpen.html':'#momenten-helpen','samen-verdedigen.html':'#momenten-verdedigen','naslag.html':'#naslag'};
   const GROUP_PAGES = {bal:'met-de-bal.html',helpen:'elkaar-helpen.html',verdedigen:'samen-verdedigen.html'};
-  const CURRENT_PAGE = Object.hasOwn(PAGE_DEFAULTS,D.delivery?.page) ? D.delivery.page : 'START.html';
+  const CURRENT_PAGE = Object.hasOwn(PAGE_DEFAULTS,D.delivery?.page) ? D.delivery.page : 'analyse.html';
   const DEFAULT_ROUTE = PAGE_DEFAULTS[CURRENT_PAGE];
   const PROGRESS_IDS = D.recommendedOrder.slice();
   const PROGRESS_MAX = (1 << PROGRESS_IDS.length) - 1;
   const COACH_COUNT = 4 + D.comparison.comparisons.length * 2 + (D.comparison.comparisons.length ? 1 : 0);
   function routeOwner(hash){
     let m;
-    if(hash==='#start'||hash==='#momenten')return 'START.html';
+    if(hash==='#start'||hash==='#momenten')return 'analyse.html';
     if((m=String(hash).match(/^#momenten-(bal|helpen|verdedigen)$/)))return GROUP_PAGES[m[1]];
     if((m=String(hash).match(/^#coach-(\d+)$/))&&Number(m[1])<COACH_COUNT)return 'coachmoment.html';
     if((m=String(hash).match(/^#les-([A-Z]\d{2})-([0-4])$/))&&lessons.has(m[1]))return GROUP_PAGES[lessons.get(m[1]).group]||null;
@@ -87,12 +87,12 @@
     on('play',()=>{if(!valid())return;p.ended=false;play.textContent='Pauze';status.textContent=listen?'Gesprek wordt afgespeeld.':'Let op het aangegeven aandachtspunt.';cancelAnimationFrame(p.raf);p.raf=requestAnimationFrame(tick);});
     on('pause',()=>{if(!valid())return;cancelAnimationFrame(p.raf);play.textContent=p.ended?'Opnieuw afspelen':'Afspelen hervatten';if(!p.ended)status.textContent='Gepauzeerd.';});
     on('ended',()=>{if(!valid())return;p.ended=true;play.textContent='Opnieuw afspelen';status.textContent='Fragment afgelopen.';});
-    on('error',()=>{if(!valid())return;error.textContent=clip.url?`Deze video is niet gevonden of kon niet worden geopend: ${clip.url}. Pak alle vijf ZIP-bestanden uit in dezelfde map, zodat START.html en de map media samen in Hockey_stap_voor_stap staan. Open daarna START.html opnieuw.`:'De browser kon deze video niet afspelen. Open het gedownloade HTML-bestand in een actuele browser.';error.hidden=false;status.textContent='De video is niet beschikbaar.';play.disabled=true;restart.disabled=true;});
+    on('error',()=>{if(!valid())return;error.textContent=clip.url?`Deze video is niet gevonden of kon niet worden geopend: ${clip.url}. Pak alle vijf ZIP-bestanden uit in dezelfde map, zodat analyse.html en de map media samen in Hockey_stap_voor_stap staan. Open daarna analyse.html opnieuw.`:'De browser kon deze video niet afspelen. Open het gedownloade HTML-bestand in een actuele browser.';error.hidden=false;status.textContent='De video is niet beschikbaar.';play.disabled=true;restart.disabled=true;});
     play.addEventListener('click',()=>video.paused?run():video.pause(),{signal});
     restart.addEventListener('click',()=>run(true),{signal});
     get('SlowClip').addEventListener('click',event=>{const slow=video.playbackRate!==.5;video.playbackRate=slow?.5:1;event.currentTarget.setAttribute('aria-pressed',String(slow));},{signal});
     const sound=get('SoundClip');if(sound)sound.addEventListener('click',()=>{video.muted=!video.muted;sound.textContent=video.muted?'Geluid: uit':'Geluid: aan';sound.setAttribute('aria-pressed',String(!video.muted));},{signal});
-    try{if(clip.url){video.src=clip.url;}else{p.url=URL.createObjectURL(videoBlob(clip));video.src=p.url;}video.load();if(video.readyState>=1)ready();}catch(_){error.textContent=clip.url?`Het bestand ${clip.url} kon niet worden klaargezet. Pak alle vijf ZIP-bestanden uit in dezelfde map Hockey_stap_voor_stap en open START.html opnieuw.`:'Het fragment kon niet worden klaargezet. Open het gedownloade bestand opnieuw.';error.hidden=false;status.textContent='De video is niet beschikbaar.';}
+    try{if(clip.url){video.src=clip.url;}else{p.url=URL.createObjectURL(videoBlob(clip));video.src=p.url;}video.load();if(video.readyState>=1)ready();}catch(_){error.textContent=clip.url?`Het bestand ${clip.url} kon niet worden klaargezet. Pak alle vijf ZIP-bestanden uit in dezelfde map Hockey_stap_voor_stap en open analyse.html opnieuw.`:'Het fragment kon niet worden klaargezet. Open het gedownloade bestand opnieuw.';error.hidden=false;status.textContent='De video is niet beschikbaar.';}
   }
   function renderHome(){
     const count=new Set(saved.completed).size;
